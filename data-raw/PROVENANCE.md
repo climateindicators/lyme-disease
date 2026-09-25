@@ -29,3 +29,19 @@ Technical documentation: <https://19january2025snapshot.epa.gov/system/files/doc
   data source: Centers for Disease Control and Prevention, 2024; web update: December 2024; units: cases per 100,000 people
 
 - **Figure 3** has no data download on EPA's page. The narrative carries the caption; there is nothing to build.
+
+## Figure images
+
+- `images/lyme_incidence_dot_maps_1996_2022.png`  \
+  <https://19january2025snapshot.epa.gov/system/files/images/2024-12/lyme_download3_2024_0.png>  \
+  sha256 `136e48e834c3b1596076bed199ce0cc21621e9342c96392c415409519636933`  \
+  EPA's own combined download image for Figure 3, a stacked before/after
+  comparison of the 1996 and 2022 dot maps. Vendored unmodified; there is no
+  data file behind it to rebuild from.
+
+- `images/fig-1.png`, `images/fig-2.png`  \
+  Static PNG renders of Figures 1 and 2, generated once from the site
+  repository's `R/lyme-disease.R` chart code against this repository's
+  `data/`, for the "Figure image (PNG)" download button on each figure's tab.
+  Not derived from anything in this repository's own pipeline; regenerate by
+  re-running that chart code against a fresh `data/` and re-saving here.

@@ -121,7 +121,8 @@ EPA_VALUE_FLAGS <- c(
   "suppressed"    = "suppressed",
   "unreliable"    = "unreliable",
   "not available" = "not_available",
-  "n/a"           = "not_available"
+  "n/a"           = "not_available",
+  "nr"            = "not_reported"
 )
 
 split_value_flag <- function(x) {

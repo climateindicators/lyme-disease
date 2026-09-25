@@ -54,10 +54,18 @@ must produce byte-identical output.
 `data-raw/*.csv`, EPA's published per-figure downloads, go to `R/build_data.R`,
 which writes the tidy CSVs and `data/meta.yml`.
 
-TODO: list each figure this build produces, one bullet each, naming the output
-file, the series it carries, its coverage, its units, and whether it appears on
-EPA's published indicator page. Any figure that does not appear there must say
-so here and in `data-raw/PROVENANCE.md`.
+- `lyme_incidence_national.csv` (Figure 1): reported national Lyme disease
+  incidence (cases per 100,000 people), 1992-2022, split into four
+  case-definition eras (`def_1990` 1992-1995, `def_1996` 1996-2007, `def_2008`
+  2008-2021, `def_2022` 2022). On EPA's published page.
+- `lyme_incidence_by_jurisdiction.csv` (Figure 2): reported Lyme disease
+  incidence by U.S. state and DC (cases per 100,000 people), 2022 only.
+  Hawaii filed no report (`flag = not_reported`); every other jurisdiction has
+  a value, including Oklahoma's genuine zero. On EPA's published page.
+- Figure 3 (before/after dot maps, 1996 vs. 2022) has no data download on
+  EPA's page. EPA's own combined comparison image is vendored at
+  `images/lyme_incidence_dot_maps_1996_2022.png`; see `data-raw/PROVENANCE.md`
+  for its source URL and checksum. Nothing under `data/` backs it.
 
 `data/meta.yml` is generated, never hand-edited. It is assembled inside
 `R/build_data.R` from each source file's own five-line preamble, so figure
@@ -129,10 +137,19 @@ agreement between `data/meta.yml` and the CSVs it documents.
 ## What must never appear here
 
 Each indicator was once a standalone Quarto website. That scaffolding is gone.
-Do not add `_quarto.yml`, `css/`, `images/`, `404.qmd`, `index.qmd`, a
-"Data & Downloads" page, `R/figures.R`, `R/_common.R`, or
-`R/utils/pick_chart.R`. The figures live in the site repository. Do not
-reintroduce a rendered page here.
+Do not add `_quarto.yml`, `css/`, `404.qmd`, `index.qmd`, a "Data & Downloads"
+page, `R/figures.R`, `R/_common.R`, or `R/utils/pick_chart.R`. The figures live
+in the site repository. Do not reintroduce a rendered page here.
+
+**Exception: `images/`.** Figure 3 has no data file, only a published EPA
+image (a before/after comparison of two maps), so there is nothing for the
+site repository's chart code to render. `images/` holds that one vendored PNG,
+documented in `data-raw/PROVENANCE.md` the same way a CSV would be (source
+URL, sha256). It is not a place for chart output: `R/build_data.R` never
+writes here, and this repository still draws no figures of its own. Static
+PNG renders of Figures 1 and 2, for the site's download buttons, are also
+vendored here for the same reason, generated once from the site repository's
+chart code, not from anything in this repository.
 
 Word documents are not part of this workflow. There is no `R/gen_narrative.R`
 and no `R/utils/read_docx.R`: the narrative comes from EPA's published HTML

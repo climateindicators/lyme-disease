@@ -1,0 +1,57 @@
+indicator:
+  name: Lyme Disease
+  slug: lyme-disease
+  publisher: U.S. Environmental Protection Agency
+  source_page: https://19january2025snapshot.epa.gov/climate-indicators/climate-change-indicators-lyme-disease/index.html
+  technical_documentation: https://19january2025snapshot.epa.gov/system/files/documents/2024-12/lyme_td.pdf
+  rights: Public domain, work of the U.S. Government (17 U.S.C. 105)
+datasets:
+- file: lyme_incidence_national.csv
+  figure: Figure 1
+  figure_title: Figure 1. Reported Cases of Lyme Disease in the United States, 1992–2022
+  source_file: lyme_fig-1.csv
+  source_sha256: f8f50029b8168514c3e11e098d9ae8626b44049bcb7b95dc4ce7f3d7e101a541
+  source_encoding: windows-1252
+  data_source: Centers for Disease Control and Prevention, 2024
+  web_update: December 2024
+  unit: cases per 100,000 people
+  rows: 31
+  columns:
+  - name: year
+    type: integer
+    description: Calendar year, as published.
+  - name: definition_key
+    type: string
+    description: 'Machine-readable case-definition era: def_1990, def_1996, def_2008,
+      or def_2022. Exactly one is populated per year; CDC''s surveillance case definition
+      changed in 1996, 2008, and 2022.'
+  - name: definition_label
+    type: string
+    description: Display label for definition_key, EPA's own column heading.
+  - name: value
+    type: number
+    description: Reported Lyme disease cases per 100,000 people for that year, verbatim
+      from the source file.
+- file: lyme_incidence_by_jurisdiction.csv
+  figure: Figure 2
+  figure_title: Figure 2. Reported Annual Lyme Disease Incidence in the United States,
+    2022
+  source_file: lyme_fig-2.csv
+  source_sha256: 3b769a32c041ba8107389077881930de7d5ea43c243c2a2fa5be2568bdfe84a3
+  source_encoding: UTF-8-BOM
+  data_source: Centers for Disease Control and Prevention, 2024
+  web_update: December 2024
+  unit: cases per 100,000 people
+  rows: 51
+  columns:
+  - name: jurisdiction
+    type: string
+    description: U.S. state or the District of Columbia.
+  - name: value
+    type: number
+    description: Reported Lyme disease cases per 100,000 people in 2022. Blank where
+      flag is set.
+  - name: flag
+    type: string
+    description: Suppression marker from the source file (not_reported where a jurisdiction
+      filed no report for 2022). Empty string when value is present.
